@@ -4,7 +4,7 @@ import Image from "next/image";
 import LogoWidget from "@widgets/logo-widget";
 import { ItemType } from "@utils/types";
 
-// Demo data
+// Test data
 import footerData from "../../../data/general/footer-01.json";
 
 const Footer = ({ space, className, data }) => (
