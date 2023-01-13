@@ -11,7 +11,7 @@ import BlogArea from "@containers/blog/layout-01";
 import { normalizedData } from "@utils/methods";
 import { getAllPosts } from "../lib/api";
 
-// Demo data
+// Test data
 import aboutData from "../data/innerpages/about.json";
 
 const About = ({ posts }) => {
