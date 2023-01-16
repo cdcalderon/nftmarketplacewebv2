@@ -61,7 +61,7 @@ const Home = () => {
                         amount: amount,
                         currency: "wETH",
                     },
-                    likeCount: 345,
+                    likeCount: 0,
                     categories: ["art", "video"],
                     images: [
                         {
