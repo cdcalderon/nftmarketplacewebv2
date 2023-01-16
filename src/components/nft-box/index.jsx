@@ -1,4 +1,4 @@
-import { Card, useNotification } from "web3uikit";
+import { useNotification } from "web3uikit";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 import { useWeb3Contract, useMoralis } from "react-moralis";
@@ -14,7 +14,6 @@ import ClientAvatar from "@ui/client-avatar";
 import ShareDropdown from "@components/share-dropdown";
 import ProductBid from "@components/product-bid";
 import Button from "@ui/button";
-import { ImageType } from "@utils/types";
 import PlaceBidModal from "@components/modals/placebid-modal";
 
 const truncateStr = (fullStr, strLen) => {
@@ -158,13 +157,14 @@ export default function NFTBox({
                 <>
                     {" "}
                     <div
+                        title={"marketplace address: " + marketplaceAddress}
                         className={clsx(
                             "product-style-one",
                             !overlay && "no-overlay",
                             placeBid && "with-placeBid"
                         )}
                     >
-                        <div className="flex">#{tokenId}</div>
+                        <div className="token-id">#{tokenId}</div>
                         <div className="card-thumbnail">
                             {image?.src && (
                                 <Anchor path={`/product/${slug}`}>
@@ -180,11 +180,19 @@ export default function NFTBox({
                                 <CountdownTimer date={auction_date} />
                             )}
                             {placeBid && isOwnedByUser ? (
-                                <Button onClick={handleCardClick} size="small">
+                                <Button
+                                    className="update-nft-btn"
+                                    onClick={handleCardClick}
+                                    size="small"
+                                >
                                     Update NFT
                                 </Button>
                             ) : (
-                                <Button onClick={handleCardClick} size="small">
+                                <Button
+                                    className="buy-nft-btn"
+                                    onClick={handleCardClick}
+                                    size="small"
+                                >
                                     Buy NFT
                                 </Button>
                             )}

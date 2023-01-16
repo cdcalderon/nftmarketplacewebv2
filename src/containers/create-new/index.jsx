@@ -27,6 +27,7 @@ const CreateNewArea = ({ className, space }) => {
     const [proceeds, setProceeds] = useState("0");
 
     const { runContractFunction } = useWeb3Contract();
+    const notify = () => toast("Transaction successful");
 
     useEffect(() => {
         if (isWeb3Enabled) {
@@ -114,12 +115,14 @@ const CreateNewArea = ({ className, space }) => {
         await tx.wait(1);
         console.log("ListSuccess");
         reset();
-        dispatch({
-            type: "success",
-            message: "NFT listing",
-            title: "NFT listed",
-            position: "topR",
-        });
+        notify();
+
+        // dispatch({
+        //     type: "success",
+        //     message: "NFT listing",
+        //     title: "NFT listed",
+        //     position: "topR",
+        // });
     }
 
     async function setupUI() {
@@ -158,7 +161,6 @@ const CreateNewArea = ({ className, space }) => {
         mode: "onChange",
     });
 
-    const notify = () => toast("Your product has submitted");
     const handleProductModal = () => {
         setShowProductModal(false);
     };

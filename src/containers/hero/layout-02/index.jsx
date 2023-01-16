@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import Slider, { SliderItem } from "@ui/slider";
 import Portfolio from "@components/portfolio/layout-01";
 import { FeatureProductsType } from "@utils/types";
+import MintNft from "@components/mint-nft";
 
 const SliderOptions = {
     infinite: true,
@@ -59,6 +60,7 @@ const HeroArea = ({ data }) => (
                     </Slider>
                 )}
             </div>
+            <MintNft />
         </div>
     </div>
 );

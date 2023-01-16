@@ -4,6 +4,8 @@ import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 import { useWeb3Contract } from "react-moralis";
 import Button from "@ui/button";
+import { toast } from "react-toastify";
+import { Row, Col, Spinner } from "react-bootstrap";
 import nftMarketplaceAbi from "../../../../constants/NftMarketplace.json";
 
 export default function UpdateListingModal({
@@ -14,18 +16,21 @@ export default function UpdateListingModal({
     onClose,
 }) {
     const dispatch = useNotification();
-
+    const [isUpdatingListing, setIsUpdatingListing] = useState(false);
+    const notifyListingUpdated = () => toast("Listing updated");
     const [priceToUpdateListingWith, setPriceToUpdateListingWith] = useState(0);
 
     // change to async
     const handleUpdateListingSuccess = async (tx) => {
         await tx.wait(1);
-        dispatch({
-            type: "success",
-            message: "listing updated",
-            title: "Listing updated - please refresh (and move blocks)",
-            position: "topR",
-        });
+        notifyListingUpdated();
+        setIsUpdatingListing(false);
+        // dispatch({
+        //     type: "success",
+        //     message: "listing updated",
+        //     title: "Listing updated - please refresh (and move blocks)",
+        //     position: "topR",
+        // });
         onClose && onClose();
         setPriceToUpdateListingWith("0");
     };
@@ -93,21 +98,27 @@ export default function UpdateListingModal({
                         </div>
                     </div>
                     <div className="bit-continue-button">
-                        <Button
-                            size="medium"
-                            fullwidth
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                updateListing({
-                                    onError: (error) => {
-                                        console.log(error);
-                                    },
-                                    onSuccess: handleUpdateListingSuccess,
-                                });
-                            }}
-                        >
-                            Proceed and update listing
-                        </Button>
+                        {isUpdatingListing ? (
+                            <Spinner animation="border" className="p-3 m-2" />
+                        ) : (
+                            <Button
+                                size="medium"
+                                fullwidth
+                                onClick={(e) => {
+                                    setIsUpdatingListing(true);
+                                    e.stopPropagation();
+                                    updateListing({
+                                        onError: (error) => {
+                                            console.log(error);
+                                        },
+                                        onSuccess: handleUpdateListingSuccess,
+                                    });
+                                }}
+                            >
+                                Proceed and update listing
+                            </Button>
+                        )}
+
                         <Button
                             color="primary-alta"
                             size="medium"
