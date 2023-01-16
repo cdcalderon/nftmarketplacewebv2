@@ -6,6 +6,7 @@ import { useWeb3Contract } from "react-moralis";
 import Button from "@ui/button";
 import { toast } from "react-toastify";
 import { Row, Col, Spinner } from "react-bootstrap";
+import Router, { useRouter } from "next/router";
 import nftMarketplaceAbi from "../../../../constants/NftMarketplace.json";
 
 export default function UpdateListingModal({
@@ -19,6 +20,7 @@ export default function UpdateListingModal({
     const [isUpdatingListing, setIsUpdatingListing] = useState(false);
     const notifyListingUpdated = () => toast("Listing updated");
     const [priceToUpdateListingWith, setPriceToUpdateListingWith] = useState(0);
+    const router = useRouter();
 
     // change to async
     const handleUpdateListingSuccess = async (tx) => {
@@ -33,6 +35,7 @@ export default function UpdateListingModal({
         // });
         onClose && onClose();
         setPriceToUpdateListingWith("0");
+        Router.reload(); //
     };
 
     const { runContractFunction: updateListing } = useWeb3Contract({
