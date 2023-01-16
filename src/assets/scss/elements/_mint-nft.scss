@@ -1,0 +1,77 @@
+:root {
+    --clr-primary: #030303;
+    --clr-secondary: #1e1e1e;
+    --clr-text-light: #f2ecff;
+    --clr-text-dark: #030303;
+    --clr-button-bg-1: #3b88c4;
+    --clr-button-bg-2: #40d6ed;
+    --clr-button-bg-3: #f57d51;
+}
+
+.mint-nft-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.mint-btn {
+    min-width: 150px;
+    max-width: 225px;
+    overflow: hidden;
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    margin: 0.5em auto;
+
+    background: linear-gradient(
+        to left,
+        var(--clr-button-bg-1),
+        var(--clr-button-bg-2)
+    );
+    color: var(--clr-text-dark);
+
+    border: none;
+    border-radius: 0.5em;
+
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 700;
+
+    transition: all 500ms ease;
+
+    &:hover {
+        color: var(--clr-primary);
+        box-shadow: 0px 0px 5px var(--clr-button-bg-3),
+            0px 0px 15px var(--clr-button-bg-3),
+            0px 0px 30px var(--clr-button-bg-3),
+            0px 0px 100px var(--clr-button-bg-3);
+    }
+}
+
+.card-thumbnail span {
+    display: flex !important;
+    padding: 21px !important;
+}
+
+.token-id {
+    display: flex;
+    position: relative;
+    bottom: 16px;
+}
+
+.buy-nft-btn {
+    position: absolute;
+    top: 37% !important;
+    left: 25% !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.update-nft-btn {
+    position: absolute;
+    top: 37% !important;
+    left: 20% !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}

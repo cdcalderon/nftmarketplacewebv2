@@ -238,3 +238,7 @@ body.modal-open {
         }
     }
 }
+
+[data-testid="test-wallet-modal"] {
+    display: grid !important;
+}
