@@ -7,6 +7,7 @@ import nftAbi from "../../../constants/BasicNft.json";
 import nftMarketplaceAbi from "../../../constants/NftMarketplace.json";
 import UpdateListingModal from "@components/modals/update-listing-modal";
 import clsx from "clsx";
+import Router, { useRouter } from "next/router";
 
 import Anchor from "@ui/anchor";
 import CountdownTimer from "@ui/countdown/layout-01";
@@ -15,6 +16,7 @@ import ShareDropdown from "@components/share-dropdown";
 import ProductBid from "@components/product-bid";
 import Button from "@ui/button";
 import PlaceBidModal from "@components/modals/placebid-modal";
+import { toast } from "react-toastify";
 
 const truncateStr = (fullStr, strLen) => {
     if (fullStr.length <= strLen) return fullStr;
@@ -49,23 +51,6 @@ export default function NFTBox({
     const handleBidModal = () => {
         setShowBidModal((prev) => !prev);
     };
-    console.log("carlosTest", {
-        overlay,
-        title,
-        slug,
-        latestBid,
-        price,
-        likeCount,
-        auction_date,
-        image,
-        bitCount,
-        authors,
-        placeBid,
-        disableShareDropdown,
-        nftAddress,
-        tokenId,
-        seller,
-    });
 
     const [imageURI, setImageURI] = useState("");
     const [showModal, setShowModal] = useState(false);
@@ -74,6 +59,7 @@ export default function NFTBox({
     const { isWeb3Enabled, account } = useMoralis();
     const dispatch = useNotification();
     const hideModal = () => setShowModal(false);
+    const notifyNftBought = () => toast("NFT bought Successfully");
 
     const isOwnedByUser = seller === account || seller === undefined;
     const formattedSellerAddress = isOwnedByUser
@@ -131,17 +117,20 @@ export default function NFTBox({
             ? setShowModal(true)
             : buyItem({
                   onError: (error) => console.log(error),
-                  onSuccess: () => handleBuyItemSuccess(),
+                  onSuccess: handleBuyItemSuccess,
               });
     };
 
-    const handleBuyItemSuccess = () => {
-        dispatch({
-            type: "success",
-            message: "Item bought!",
-            title: "Item Bought",
-            position: "topR",
-        });
+    const handleBuyItemSuccess = async (tx) => {
+        await tx.wait(2);
+        // dispatch({
+        //     type: "success",
+        //     message: "Item bought!",
+        //     title: "Item Bought",
+        //     position: "topR",
+        // });
+        notifyNftBought();
+        Router.reload();
     };
 
     return (
