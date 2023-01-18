@@ -1,8 +1,12 @@
-import { gql } from "@apollo/client"
+import { gql } from "@apollo/client";
 
+// Demo only
 const GET_ACTIVE_ITEMS = gql`
     {
-        activeItems(first: 5, where: { buyer: "0x0000000000000000000000000000000000000000" }) {
+        activeItems(
+            first: 2000
+            where: { buyer: "0x0000000000000000000000000000000000000000" }
+        ) {
             id
             buyer
             seller
@@ -11,5 +15,5 @@ const GET_ACTIVE_ITEMS = gql`
             price
         }
     }
-`
-export default GET_ACTIVE_ITEMS
+`;
+export default GET_ACTIVE_ITEMS;

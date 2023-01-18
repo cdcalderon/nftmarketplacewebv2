@@ -24,7 +24,7 @@ export default function UpdateListingModal({
 
     // change to async
     const handleUpdateListingSuccess = async (tx) => {
-        await tx.wait(1);
+        await tx.wait(2);
         notifyListingUpdated();
         setIsUpdatingListing(false);
         // dispatch({
@@ -35,7 +35,7 @@ export default function UpdateListingModal({
         // });
         onClose && onClose();
         setPriceToUpdateListingWith("0");
-        Router.reload(); //
+        Router.reload();
     };
 
     const { runContractFunction: updateListing } = useWeb3Contract({
@@ -112,6 +112,7 @@ export default function UpdateListingModal({
                                     e.stopPropagation();
                                     updateListing({
                                         onError: (error) => {
+                                            setIsUpdatingListing(false);
                                             console.log(error);
                                         },
                                         onSuccess: handleUpdateListingSuccess,
