@@ -10,15 +10,19 @@ import { toast } from "react-toastify";
 import { ethers } from "ethers";
 import { useNotification } from "web3uikit";
 import { useMoralis, useWeb3Contract } from "react-moralis";
+import { useRouter } from "next/router";
+import { Spinner } from "react-bootstrap";
 import networkMapping from "../../../constants/networkMapping.json";
 import nftAbi from "../../../constants/BasicNft.json";
 import nftMarketplaceAbi from "../../../constants/NftMarketplace.json";
 
 const CreateNewArea = ({ className, space }) => {
     const [showProductModal, setShowProductModal] = useState(false);
+    const [isListingNft, setIsListingNft] = useState(false);
     const [selectedImage, setSelectedImage] = useState();
     const [hasImageError, setHasImageError] = useState(false);
     const [previewData, setPreviewData] = useState({});
+    const router = useRouter();
 
     const { chainId, account, isWeb3Enabled } = useMoralis();
     const chainString = chainId ? parseInt(chainId).toString() : "31337";
@@ -57,12 +61,14 @@ const CreateNewArea = ({ className, space }) => {
             params: approveOptions,
             onSuccess: () => handleApproveSuccess(nftAddress, tokenId, price),
             onError: (error) => {
+                setIsListingNft(false);
                 console.log(error);
             },
         });
     }
 
     const onSubmit = async (data, e) => {
+        setIsListingNft(true);
         const { target } = e;
 
         console.log("Approving...", data, e);
@@ -112,11 +118,18 @@ const CreateNewArea = ({ className, space }) => {
     }
 
     async function handleListSuccess(tx) {
-        await tx.wait(1);
+        await tx.wait(2);
         console.log("ListSuccess");
         reset();
         notify();
 
+        router.push({
+            pathname: "/",
+            query: { shouldRefresh: "refresh" },
+            shallow: true,
+        });
+
+        setIsListingNft(true);
         // dispatch({
         //     type: "success",
         //     message: "NFT listing",
@@ -293,9 +306,19 @@ const CreateNewArea = ({ className, space }) => {
 
                                         <div className="col-md-12 col-xl-8 mt_lg--15 mt_md--15 mt_sm--15">
                                             <div className="input-box">
-                                                <Button type="submit" fullwidth>
-                                                    Submit Item
-                                                </Button>
+                                                {isListingNft ? (
+                                                    <Spinner
+                                                        animation="border"
+                                                        className="p-3 m-2"
+                                                    />
+                                                ) : (
+                                                    <Button
+                                                        type="submit"
+                                                        fullwidth
+                                                    >
+                                                        Submit Item
+                                                    </Button>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
