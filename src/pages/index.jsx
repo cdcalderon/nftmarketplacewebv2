@@ -15,19 +15,30 @@ import networkMapping from "../../constants/networkMapping.json";
 import homepageData from "../data/homepages/home-01.json";
 import productData from "../data/products.json";
 import { ethers } from "ethers";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 export async function getStaticProps() {
     return { props: { className: "template-color-1" } };
 }
 
 const Home = () => {
+    const [listedNfts, setListedNfts] = useState();
+    const router = useRouter();
+    const {
+        query: { shouldRefresh },
+    } = router;
+
+    console.log();
     const { isWeb3Enabled, chainId } = useMoralis();
     const chainString = chainId ? parseInt(chainId).toString() : "31337";
     console.log(chainString);
     console.log("chainString", chainString);
     const marketplaceAddress = networkMapping[chainString].NftMarketplace[0];
     console.log("marketplaceAddress -->>", marketplaceAddress);
-    const { loading, error, data: listedNfts } = useQuery(GET_ACTIVE_ITEMS);
+    const { loading, error, data, refetch } = useQuery(GET_ACTIVE_ITEMS, {
+        pollInterval: 1,
+    });
     let products = [];
 
     const content = normalizedData(homepageData?.content || []);
@@ -42,6 +53,12 @@ const Home = () => {
                 Number(new Date(a.published_at))
         )
         .slice(0, 5);
+
+    useEffect(() => {
+        if (!loading && !error && data) {
+            setListedNfts(data);
+        }
+    }, [loading, error, data]);
 
     function mapProducts(listedNfts) {
         return listedNfts?.activeItems.map(
@@ -101,6 +118,9 @@ const Home = () => {
                     pageTitle="Explore NFTs"
                     currentPage="Explore NFTs"
                 />
+                {/* <button onClick={() => refetch({ breed: "new_dog_breed" })}>
+                    Refetch NFTs
+                </button> */}
                 {isWeb3Enabled && mapProducts(listedNfts) ? (
                     <ExploreProductArea
                         data={{
