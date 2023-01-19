@@ -17,6 +17,7 @@ import ProductBid from "@components/product-bid";
 import Button from "@ui/button";
 import PlaceBidModal from "@components/modals/placebid-modal";
 import { toast } from "react-toastify";
+import { Spinner } from "react-bootstrap";
 
 const truncateStr = (fullStr, strLen) => {
     if (fullStr.length <= strLen) return fullStr;
@@ -52,6 +53,8 @@ export default function NFTBox({
         setShowBidModal((prev) => !prev);
     };
 
+    const [isTransactionInProgress, setIsTransactionInProgress] =
+        useState(false);
     const [imageURI, setImageURI] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [tokenDescription, setTokenDescription] = useState("");
@@ -116,12 +119,16 @@ export default function NFTBox({
         isOwnedByUser
             ? setShowModal(true)
             : buyItem({
-                  onError: (error) => console.log(error),
+                  onError: (error) => {
+                      setIsTransactionInProgress(false);
+                      console.log(error);
+                  },
                   onSuccess: handleBuyItemSuccess,
               });
     };
 
     const handleBuyItemSuccess = async (tx) => {
+        setIsTransactionInProgress(true);
         await tx.wait(2);
         // dispatch({
         //     type: "success",
@@ -130,6 +137,7 @@ export default function NFTBox({
         //     position: "topR",
         // });
         notifyNftBought();
+        setIsTransactionInProgress(false);
         Router.reload();
     };
 
@@ -182,7 +190,9 @@ export default function NFTBox({
                                     onClick={handleCardClick}
                                     size="small"
                                 >
-                                    Buy NFT
+                                    {!isTransactionInProgress
+                                        ? " Buy NFT"
+                                        : "..."}
                                 </Button>
                             )}
                         </div>
@@ -212,6 +222,12 @@ export default function NFTBox({
                         </Anchor>
                         <div title={seller} className="italic text-sm">
                             Owned by {formattedSellerAddress}{" "}
+                            {isTransactionInProgress && (
+                                <Spinner
+                                    animation="border"
+                                    className="p-3 m-2"
+                                />
+                            )}
                         </div>
                         {/* <span className="latest-bid">
                             Highest bid {latestBid}
