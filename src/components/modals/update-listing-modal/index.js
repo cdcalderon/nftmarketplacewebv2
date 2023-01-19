@@ -19,11 +19,13 @@ export default function UpdateListingModal({
     const dispatch = useNotification();
     const [isUpdatingListing, setIsUpdatingListing] = useState(false);
     const notifyListingUpdated = () => toast("Listing updated");
+    const notifyError = () => toast("An error occured");
     const [priceToUpdateListingWith, setPriceToUpdateListingWith] = useState(0);
     const router = useRouter();
 
     // change to async
     const handleUpdateListingSuccess = async (tx) => {
+        setIsUpdatingListing(true);
         await tx.wait(2);
         notifyListingUpdated();
         setIsUpdatingListing(false);
@@ -108,12 +110,12 @@ export default function UpdateListingModal({
                                 size="medium"
                                 fullwidth
                                 onClick={(e) => {
-                                    setIsUpdatingListing(true);
                                     e.stopPropagation();
                                     updateListing({
                                         onError: (error) => {
                                             setIsUpdatingListing(false);
                                             console.log(error);
+                                            notifyError();
                                         },
                                         onSuccess: handleUpdateListingSuccess,
                                     });

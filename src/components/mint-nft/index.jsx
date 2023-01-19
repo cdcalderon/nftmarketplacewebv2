@@ -142,7 +142,7 @@ export default function MintNft() {
                 {isMinting ? (
                     <Spinner animation="border" className="p-3 m-2" />
                 ) : (
-                    <button className=" mint-btn" onClick={handleMint}>
+                    <button className="mint-btn" onClick={handleMint}>
                         Mint
                     </button>
                 )}
