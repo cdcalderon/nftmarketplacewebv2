@@ -19,6 +19,7 @@ import nftMarketplaceAbi from "../../../constants/NftMarketplace.json";
 const CreateNewArea = ({ className, space }) => {
     const [showProductModal, setShowProductModal] = useState(false);
     const [isListingNft, setIsListingNft] = useState(false);
+    const [isWithdrawing, setIsWithdrawing] = useState(false);
     const [selectedImage, setSelectedImage] = useState();
     const [hasImageError, setHasImageError] = useState(false);
     const [previewData, setPreviewData] = useState({});
@@ -157,12 +158,15 @@ const CreateNewArea = ({ className, space }) => {
 
     const handleWithdrawSuccess = async (tx) => {
         await tx.wait(1);
+        setIsWithdrawing(false);
         console.log("WithdrawSuccess");
-        dispatch({
-            type: "success",
-            message: "Withdrawing proceeds",
-            position: "topR",
-        });
+        setProceeds(0);
+        notify();
+        // dispatch({
+        //     type: "success",
+        //     message: "Withdrawing proceeds",
+        //     position: "topR",
+        // });
     };
 
     const {
@@ -338,6 +342,37 @@ const CreateNewArea = ({ className, space }) => {
                                 </span>
                             </div>
                         </div>
+                        {proceeds != "0" && !isWithdrawing ? (
+                            <Button
+                                className="mint-btn mt-40 "
+                                type="button"
+                                fullwidth
+                                onClick={() => {
+                                    setIsWithdrawing(true);
+                                    runContractFunction({
+                                        params: {
+                                            abi: nftMarketplaceAbi,
+                                            contractAddress: marketplaceAddress,
+                                            functionName: "withdrawProceeds",
+                                            params: {},
+                                        },
+                                        onError: (error) => {
+                                            setIsWithdrawing(false);
+                                            console.log(error);
+                                        },
+                                        onSuccess: handleWithdrawSuccess,
+                                    });
+                                }}
+                            >
+                                <div>Withdraw {proceeds} proceeds</div>
+                            </Button>
+                        ) : (
+                            <div>No proceeds detected</div>
+                        )}
+
+                        {isWithdrawing && (
+                            <Spinner animation="border" className="p-3 m-2" />
+                        )}
                     </div>
                 </form>
             </div>
