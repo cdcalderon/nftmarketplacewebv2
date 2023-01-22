@@ -46,7 +46,7 @@ const Home = () => {
         (prod) =>
             prod?.auction_date && new Date() <= new Date(prod?.auction_date)
     );
-    console.log("productData  ", productData);
+    //console.log("productData  ", productData);
     const newestData = productData
         //.filter(l => l.)
         .sort(

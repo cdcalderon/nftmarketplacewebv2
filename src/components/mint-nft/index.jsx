@@ -1,13 +1,12 @@
 import { useNotification } from "web3uikit";
 import { useState, useEffect } from "react";
 import { useWeb3Contract, useMoralis } from "react-moralis";
-import UpdateListingModal from "@components/modals/update-listing-modal";
-import networkMapping from "../../../constants/networkMapping.json";
-import ponchoCuteAbi from "../../../constants/PonchoCute.json";
 import { toast } from "react-toastify";
 import { Row, Col, Spinner } from "react-bootstrap";
 import Image from "next/image";
 import Anchor from "@ui/anchor";
+import ponchoCuteAbi from "../../../constants/PonchoCute.json";
+import networkMapping from "../../../constants/networkMapping.json";
 
 const truncateStr = (fullStr, strLen) => {
     if (fullStr.length <= strLen) return fullStr;
@@ -17,7 +16,7 @@ const truncateStr = (fullStr, strLen) => {
     const frontChars = Math.ceil(charsToShow / 2);
     const separator = "...";
     const seperatorLength = separator.length;
-    return fullStr.slice(0, 5) + "..." + fullStr.slice(38, 42);
+    return `${fullStr.slice(0, 5)}...${fullStr.slice(38, 42)}`;
 };
 
 export default function MintNft() {
@@ -30,7 +29,6 @@ export default function MintNft() {
     const ponchoCuteAddress = networkMapping[chainString].PonchoCute[0];
     const { runContractFunction } = useWeb3Contract();
 
-    console.log("ponchoCuteAddress ", ponchoCuteAddress);
     const { runContractFunction: mintNft } = useWeb3Contract({
         abi: ponchoCuteAbi,
         contractAddress: ponchoCuteAddress,
@@ -129,7 +127,7 @@ export default function MintNft() {
                 <h3>Free minting on Goerli testnet only</h3>
             </div>
             <Row className="header my-3 p-3 mb-0 pb-0">
-                <Col xs={12} md={12} lg={8} xxl={8}></Col>
+                <Col xs={12} md={12} lg={8} xxl={8} />
                 <Col className="flex social-icons">
                     {networkMapping[chainString].openseaURL && (
                         <Anchor
@@ -167,6 +165,7 @@ export default function MintNft() {
                                     display: "inline-block",
                                     marginLeft: "3px",
                                 }}
+                                rel="noreferrer"
                             >
                                 OpenSea
                             </a>
