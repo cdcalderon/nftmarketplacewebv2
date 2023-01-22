@@ -6,6 +6,8 @@ import networkMapping from "../../../constants/networkMapping.json";
 import ponchoCuteAbi from "../../../constants/PonchoCute.json";
 import { toast } from "react-toastify";
 import { Row, Col, Spinner } from "react-bootstrap";
+import Image from "next/image";
+import Anchor from "@ui/anchor";
 
 const truncateStr = (fullStr, strLen) => {
     if (fullStr.length <= strLen) return fullStr;
@@ -121,20 +123,27 @@ export default function MintNft() {
 
     return (
         <>
+            <div className="cnt-messages header">
+                <h1>Poncho Cute</h1>
+                <h2>2,000 Poncho Cute NFTs available</h2>
+                <h3>Free minting on Goerli testnet only</h3>
+            </div>
             <Row className="header my-3 p-3 mb-0 pb-0">
-                <Col xs={12} md={12} lg={8} xxl={8}>
-                    <h1>Poncho Cute</h1>
-                    <h2>2,000 Poncho Cute NFTs available</h2>
-                    <h3>Free minting on Goerli testnet only</h3>
-                </Col>
+                <Col xs={12} md={12} lg={8} xxl={8}></Col>
                 <Col className="flex social-icons">
-                    <a
-                        href={`${networkMapping[chainString].openseaURL}/collection/${networkMapping[chainString].projectName}`}
-                        target="_blank"
-                        className="circle flex button"
-                    >
-                        Image 3
-                    </a>
+                    {networkMapping[chainString].openseaURL && (
+                        <Anchor
+                            className="logo-dark"
+                            path={`${networkMapping[chainString].openseaURL}/collection/${networkMapping[chainString].projectName}`}
+                        >
+                            <Image
+                                src="/images/opensea.png"
+                                alt="opensea"
+                                width={40}
+                                height={40}
+                            />
+                        </Anchor>
+                    )}
                 </Col>
             </Row>
 

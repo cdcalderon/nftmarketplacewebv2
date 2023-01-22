@@ -6,14 +6,14 @@
             "items": [
                 {
                     "id": 1,
-                    "title": "Cubic Bazier",
+                    "title": "Poncho Cute #14",
                     "slug": "/collection",
                     "author": {
-                        "name": "Mark Jordan",
+                        "name": "Poncho Cute Collection",
                         "slug": "/author"
                     },
                     "image": {
-                        "src": "/images/banner/banner-01.jpg"
+                        "src": "/images/nfts/14.png"
                     }
                 },
                 {
