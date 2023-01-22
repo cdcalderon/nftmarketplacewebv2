@@ -18,14 +18,14 @@
                 },
                 {
                     "id": 2,
-                    "title": "Poncho Cute #23",
+                    "title": "Poncho Cute #737",
                     "slug": "/collection",
                     "author": {
                         "name": "Poncho Cute Collection",
                         "slug": "/author"
                     },
                     "image": {
-                        "src": "/images/nfts/23.png"
+                        "src": "/images/nfts/737.png"
                     }
                 },
                 {
@@ -50,6 +50,18 @@
                     },
                     "image": {
                         "src": "/images/nfts/678.png"
+                    }
+                },
+                {
+                    "id": 4,
+                    "title": "Poncho Cute #23",
+                    "slug": "/collection",
+                    "author": {
+                        "name": "Poncho Cute Collection",
+                        "slug": "/author"
+                    },
+                    "image": {
+                        "src": "/images/nfts/23.png"
                     }
                 }
             ]
