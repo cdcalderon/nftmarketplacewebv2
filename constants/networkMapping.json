@@ -1,7 +1,7 @@
 {
     "5": {
         "NftMarketplace": ["0xE106614DBCbFa4A68Cc5f62A562da8F422E72793"],
-        "PonchoCute": ["0x95F7aDa2206C82067e68B6191218B917EAe5CC81"],
+        "PonchoCute": ["0x9aD4C02C97DE0Fdc0c713b2D255E97A6E3CF3593"],
         "explorerURL": "https://mumbai.polygonscan.com",
         "openseaURL": "https://testnets.opensea.io",
         "projectName": "poncho-nft"
