@@ -138,7 +138,9 @@ const Home = () => {
                         }}
                     />
                 ) : (
-                    <div>Web3 Currently Not Enabled</div>
+                    <div className="web3-not-enabled container">
+                        <h6>Web3 Currently Not Enabled</h6>
+                    </div>
                 )}
             </main>
             <Footer />
