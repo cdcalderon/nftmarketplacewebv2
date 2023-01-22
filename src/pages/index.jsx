@@ -36,9 +36,7 @@ const Home = () => {
     console.log("chainString", chainString);
     const marketplaceAddress = networkMapping[chainString].NftMarketplace[0];
     console.log("marketplaceAddress -->>", marketplaceAddress);
-    const { loading, error, data, refetch } = useQuery(GET_ACTIVE_ITEMS, {
-        pollInterval: 1,
-    });
+    const { loading, error, data, refetch } = useQuery(GET_ACTIVE_ITEMS);
     let products = [];
 
     const content = normalizedData(homepageData?.content || []);
