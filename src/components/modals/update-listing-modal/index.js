@@ -26,7 +26,7 @@ export default function UpdateListingModal({
     // change to async
     const handleUpdateListingSuccess = async (tx) => {
         setIsUpdatingListing(true);
-        await tx.wait(2);
+        await tx.wait(1);
         notifyListingUpdated();
         setIsUpdatingListing(false);
         // dispatch({

@@ -310,18 +310,14 @@ const CreateNewArea = ({ className, space }) => {
 
                                         <div className="col-md-12 col-xl-8 mt_lg--15 mt_md--15 mt_sm--15">
                                             <div className="input-box">
-                                                {isListingNft ? (
+                                                <Button type="submit" fullwidth>
+                                                    Submit Item
+                                                </Button>
+                                                {isListingNft && (
                                                     <Spinner
                                                         animation="border"
                                                         className="p-3 m-2"
                                                     />
-                                                ) : (
-                                                    <Button
-                                                        type="submit"
-                                                        fullwidth
-                                                    >
-                                                        Submit Item
-                                                    </Button>
                                                 )}
                                             </div>
                                         </div>

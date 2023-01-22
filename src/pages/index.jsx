@@ -46,7 +46,9 @@ const Home = () => {
         (prod) =>
             prod?.auction_date && new Date() <= new Date(prod?.auction_date)
     );
+    console.log("productData  ", productData);
     const newestData = productData
+        //.filter(l => l.)
         .sort(
             (a, b) =>
                 Number(new Date(b.published_at)) -
@@ -61,8 +63,16 @@ const Home = () => {
     }, [loading, error, data]);
 
     function mapProducts(listedNfts) {
-        return listedNfts?.activeItems.map(
-            ({ price, nftAddress, tokenId, seller }, index) => {
+        return listedNfts?.activeItems
+            .filter(
+                (l) =>
+                    !(
+                        l.nftAddress ===
+                            "0x95f7ada2206c82067e68b6191218b917eae5cc81" &&
+                        l.tokenId === "2"
+                    )
+            )
+            .map(({ price, nftAddress, tokenId, seller }, index) => {
                 console.log("carlos", price, nftAddress, tokenId, seller);
                 const amount = ethers.utils.formatUnits(price, "ether");
                 return {
@@ -105,8 +115,7 @@ const Home = () => {
                     language: "ENglish",
                     rating: 4,
                 };
-            }
-        );
+            });
     }
 
     return (

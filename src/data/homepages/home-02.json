@@ -6,50 +6,50 @@
             "items": [
                 {
                     "id": 1,
-                    "title": "Poncho Cute #14",
+                    "title": "Poncho Cute #12",
                     "slug": "/collection",
                     "author": {
                         "name": "Poncho Cute Collection",
                         "slug": "/author"
                     },
                     "image": {
-                        "src": "/images/nfts/14.png"
+                        "src": "/images/nfts/12.png"
                     }
                 },
                 {
                     "id": 2,
-                    "title": "Poncho Cute #156",
+                    "title": "Poncho Cute #23",
                     "slug": "/collection",
                     "author": {
                         "name": "Poncho Cute Collection",
                         "slug": "/author"
                     },
                     "image": {
-                        "src": "/images/nfts/156.png"
+                        "src": "/images/nfts/23.png"
                     }
                 },
                 {
                     "id": 3,
-                    "title": "Poncho Cute #292",
+                    "title": "Poncho Cute #479",
                     "slug": "/collection",
                     "author": {
                         "name": "Poncho Cute Collection",
                         "slug": "/author"
                     },
                     "image": {
-                        "src": "/images/nfts/292.png"
+                        "src": "/images/nfts/479.png"
                     }
                 },
                 {
                     "id": 4,
-                    "title": "Poncho Cute #317",
+                    "title": "Poncho Cute #678",
                     "slug": "/collection",
                     "author": {
                         "name": "Poncho Cute Collection",
                         "slug": "/author"
                     },
                     "image": {
-                        "src": "/images/nfts/317.png"
+                        "src": "/images/nfts/678.png"
                     }
                 }
             ]
