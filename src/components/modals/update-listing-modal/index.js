@@ -47,9 +47,18 @@ export default function UpdateListingModal({
         params: {
             nftAddress,
             tokenId,
-            newPrice: ethers.utils.parseEther(priceToUpdateListingWith || "0"),
+            newPrice: ethers.utils.parseEther(
+                normalize(priceToUpdateListingWith) || "0"
+            ),
         },
     });
+
+    function normalize(amount) {
+        if (amount < 0 || amount === ".") {
+            return amount * 0.0;
+        }
+        return amount;
+    }
 
     return (
         <Modal
@@ -95,9 +104,9 @@ export default function UpdateListingModal({
                             </div>
                             <div className="bid-content-right">
                                 {/* <span>9578 wETH</span> */}
-                                <span>
+                                {/* <span>
                                     {priceToUpdateListingWith * 0.001} wETH
-                                </span>
+                                </span> */}
                                 {/* <span>9588 wETH</span> */}
                             </div>
                         </div>
