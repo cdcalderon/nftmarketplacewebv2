@@ -18,38 +18,38 @@
                 },
                 {
                     "id": 2,
-                    "title": "Faminho24",
+                    "title": "Poncho Cute #156",
                     "slug": "/collection",
                     "author": {
-                        "name": "Farik Shaikh",
+                        "name": "Poncho Cute Collection",
                         "slug": "/author"
                     },
                     "image": {
-                        "src": "/images/banner/banner-02.jpg"
+                        "src": "/images/nfts/156.png"
                     }
                 },
                 {
                     "id": 3,
-                    "title": "Tzniistan",
+                    "title": "Poncho Cute #292",
                     "slug": "/collection",
                     "author": {
-                        "name": "John Doe",
+                        "name": "Poncho Cute Collection",
                         "slug": "/author"
                     },
                     "image": {
-                        "src": "/images/banner/banner-03.jpg"
+                        "src": "/images/nfts/292.png"
                     }
                 },
                 {
                     "id": 4,
-                    "title": "Bazier",
+                    "title": "Poncho Cute #317",
                     "slug": "/collection",
                     "author": {
-                        "name": "Olive Yew",
+                        "name": "Poncho Cute Collection",
                         "slug": "/author"
                     },
                     "image": {
-                        "src": "/images/banner/banner-04.jpg"
+                        "src": "/images/nfts/317.png"
                     }
                 }
             ]

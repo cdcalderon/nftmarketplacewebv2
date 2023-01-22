@@ -700,3 +700,7 @@ input[type="search"]::-webkit-search-results-decoration {
     width: 100%;
     backdrop-filter: blur(9px);
 }
+
+a {
+    cursor: pointer;
+}
