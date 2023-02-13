@@ -1,6 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+<img width="960" alt="nft3" src="https://user-images.githubusercontent.com/5435179/218417817-1d00a253-7fac-4918-9aa8-88eaad3a1b5b.png">
+<img width="1286" alt="nft1" src="https://user-images.githubusercontent.com/5435179/218417825-49d15c03-b1c0-4077-9d4e-35b6d611df3f.png">
+<img width="961" alt="nft2" src="https://user-images.githubusercontent.com/5435179/218417828-a51b68bb-00f6-4981-b739-d0d9a9ba9cfb.png">
 
 First, run the development server:
 
